@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --color-text: var(--text);
+  --color-background: var(--background);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+}
+
+:root {
+  --text: #060514;
+  --background: #fbfbfe;
+  --primary: #5a44ca;
+  --secondary: #d498e2;
+  --accent: #d463c1;
+}
+.dark {
+  --text: #ecebfa;
+  --background: #010104;
+  --primary: #4b35bb;
+  --secondary: #5a1d67;
+  --accent: #9c2b89;
+}
+
+html {
+  scroll-behavior: smooth;
+}
