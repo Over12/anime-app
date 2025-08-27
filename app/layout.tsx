@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "@/styles/globals.css";
+import { onest } from '@/styles/fonts'
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -12,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className='text-text bg-background transition-colors'>
+      <body className={onest.className}>
         {children}
       </body>
     </html>
