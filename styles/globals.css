@@ -26,3 +26,11 @@
 html {
   scroll-behavior: smooth;
 }
+
+.spacing-x {
+  @apply px-7 sm:px-20;
+}
+
+.spacing-section {
+  @apply px-7 sm:px-20 py-10 sm:py-20;
+}
