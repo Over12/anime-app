@@ -32,8 +32,8 @@ export default function NavBar() {
 
   return (
     <>
-      <nav className='fixed top-0 w-full h-16 grid grid-cols-2 sm:grid-cols-3 items-center px-7 sm:px-20 z-50'>
-        <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className='text-2xl font-bold justify-self-start'>Anime App</motion.h1>
+      <nav className='fixed top-0 w-full h-16 grid grid-cols-2 sm:grid-cols-3 items-center spacing-x z-50'>
+        <motion.span initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className='text-2xl font-bold justify-self-start'>Anime App</motion.span>
         <ul className='hidden sm:flex gap-14 justify-self-center'>
           <Navigation />
         </ul>
@@ -47,11 +47,11 @@ export default function NavBar() {
       </nav>
       <AnimatePresence mode='wait'>
         {isOpen && (
-          <div className='absolute inset-0 flex items-center justify-center text-center'>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='absolute inset-0 bg-background flex items-center justify-center text-center z-40'>
             <ul className='flex flex-col gap-5 text-lg font-semibold uppercase'>
               <Navigation />
             </ul>
-          </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </>
@@ -61,8 +61,7 @@ export default function NavBar() {
 function Navigation() {
   const navigationVariant = {
     initial: { opacity: 0, y: 10 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, scale: 0.95 }
+    animate: { opacity: 1, y: 0 }
   }
 
   const links = [
@@ -74,7 +73,7 @@ function Navigation() {
   return (
     <>
       {links.map((link, index) => (
-        <motion.li key={index} variants={navigationVariant} initial='initial' animate='animate' exit='exit' transition={{ delay: index * 0.1 }}>
+        <motion.li key={index} variants={navigationVariant} initial='initial' animate='animate' transition={{ delay: index * 0.1 }}>
           <Link href={link.href}>{link.label}</Link>
         </motion.li>
       ))}
