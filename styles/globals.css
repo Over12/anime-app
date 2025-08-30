@@ -34,3 +34,11 @@ html {
 .spacing-section {
   @apply px-7 sm:px-20 py-10 sm:py-20;
 }
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+.title-section {
+  @apply text-4xl font-bold mb-10;
+}

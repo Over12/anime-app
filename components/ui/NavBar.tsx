@@ -32,7 +32,7 @@ export default function NavBar() {
 
   return (
     <>
-      <nav className='fixed top-0 w-full h-16 grid grid-cols-2 sm:grid-cols-3 items-center spacing-x z-50'>
+      <nav className='fixed top-0 w-full h-16 bg-background/80 backdrop-blur-md grid grid-cols-2 sm:grid-cols-3 items-center spacing-x z-50'>
         <motion.span initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className='text-2xl font-bold justify-self-start'>Anime App</motion.span>
         <ul className='hidden sm:flex gap-14 justify-self-center'>
           <Navigation />
@@ -67,6 +67,7 @@ function Navigation() {
   const links = [
     { href: '/', label: 'Home' },
     { href: '/animes', label: 'Animes' },
+    { href: '/ongoing', label: 'Ongoing' },
     { href: '/upcoming', label: 'Upcoming' }
   ]
 
