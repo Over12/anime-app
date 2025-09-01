@@ -6,7 +6,7 @@ export default function TopAnimes() {
 
   return (
     <section className='spacing-section'>
-      <h2 className='title-section'>The best 5 of the ranking</h2>
+      <h2 className='title-section'>The Best 5 Of The Ranking</h2>
       <div className='flex flex-col gap-7'>
         {animes.map((anime) => (
           <AnimeRank key={anime.mal_id} anime={anime} />
