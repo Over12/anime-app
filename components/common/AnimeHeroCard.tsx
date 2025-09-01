@@ -33,7 +33,7 @@ export default function AnimeHeroCard({ anime, index }: { anime: Anime, index: n
   return (
     <div className={`perspective-midrange ${index >= 3 ? 'translate-x-14': ''}`}>
       <motion.div ref={cardRef} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: index * 0.1 }} style={{ rotateX, rotateY }} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className="border border-primary/50 bg-gradient-to-r from-primary/15 to-secondary/15 rounded-md h-52 w-[325px] flex gap-2 p-2 overflow-hidden">
-        <img src={anime.images.webp.image_url} alt={'Image of ' + anime.title} className='rounded-md aspect-[2/3] object-cover' />
+        <img src={anime.images.webp.image_url} alt={'Image of ' + anime.title} loading='lazy' className='rounded-md aspect-[2/3] object-cover' />
         <div className='flex flex-col gap-2'>
           <p className='w-fit bg-green-500/20 border border-green-500 text-green-500 text-xs px-2 py-1 rounded-md'>{anime.status}</p>
           <p className='text-xs'>{anime.episodes} episodes</p>
