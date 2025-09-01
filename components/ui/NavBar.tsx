@@ -47,7 +47,7 @@ export default function NavBar() {
       </nav>
       <AnimatePresence mode='wait'>
         {isOpen && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='absolute inset-0 bg-background flex items-center justify-center text-center z-40'>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='fixed inset-0 bg-background flex items-center justify-center text-center z-40'>
             <ul className='flex flex-col gap-5 text-lg font-semibold uppercase'>
               <Navigation />
             </ul>
