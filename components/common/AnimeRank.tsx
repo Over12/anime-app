@@ -1,5 +1,3 @@
-'use client'
-
 import { Anime } from '@/types/Anime'
 import clsx from 'clsx'
 import Link from 'next/link'
@@ -7,11 +5,11 @@ import Link from 'next/link'
 export default function AnimeRank({ anime }: { anime: Anime }) {
   return (
     <div key={anime.mal_id} className='flex'>
-      <img src={anime.images.webp.image_url} alt={`Portada de ${anime.title}`} className={clsx(
+      <img src={anime.images.webp.image_url} alt={`Portada de ${anime.title}`} loading='lazy' className={clsx(
         'rounded-md aspect-[2/3] w-56 h-auto',
-        anime.rank === 1 && 'border-2 border-yellow-500 shadow-xl shadow-amber-500/80',
-        anime.rank === 2 && 'border-2 border-gray-400 shadow-xl shadow-gray-400/80',
-        anime.rank === 3 && 'border-2 border-amber-800 shadow-xl shadow-amber-800/80',
+        anime.rank === 1 && 'border-2 border-yellow-500 shadow-xl shadow-amber-500/50',
+        anime.rank === 2 && 'border-2 border-gray-400 shadow-xl shadow-gray-400/50',
+        anime.rank === 3 && 'border-2 border-amber-800 shadow-xl shadow-amber-800/50',
       )} />
       <div className='relative w-full px-3'>
         <div className={clsx(
