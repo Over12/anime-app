@@ -32,7 +32,7 @@ html {
 }
 
 .spacing-section {
-  @apply px-7 sm:px-20 py-10 sm:py-20;
+  @apply px-7 sm:px-20 py-10 sm:py-15;
 }
 
 ::-webkit-scrollbar {
