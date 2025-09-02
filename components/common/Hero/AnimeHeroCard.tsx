@@ -55,14 +55,14 @@ export default function AnimeHeroCard({ anime, index }: { anime: Anime, index: n
                   <IconStar className='size-4 text-yellow-500' />
                   {anime.score}
                 </span>
-                <p className='text-xs text-text/50'>{anime.scored_by} users</p>
+                <p className='text-xs text-text/50 transition-colors'>{anime.scored_by} users</p>
               </div>
               <div>
                 <span className='flex items-center gap-px'>
                   <IconHash className='size-4' />
                   {anime.rank}
                 </span>
-                <p className='text-xs text-text/50'>Ranking</p>
+                <p className='text-xs text-text/50 transition-colors'>Ranking</p>
               </div>
             </div>
           )}
