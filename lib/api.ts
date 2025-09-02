@@ -2,11 +2,13 @@ import { Anime } from '@/types/Anime'
 import { AnimeQueryParameters } from '@/types/AnimeQueryParameters'
 import { ApiResponse, ErrorResponse } from '@/types/ApiResponse'
 
-export async function fetchTopAnime({ page = 1, limit = 5 }: AnimeQueryParameters) {
+export async function fetchTopAnime({ page = 1, limit = 5, filter }: AnimeQueryParameters) {
   const queries = new URLSearchParams({
     page: page.toString(),
     limit: limit.toString()
   })
+
+  if (filter) queries.append('filter', filter)
 
   try {
     const response = await fetch(`${process.env.API_URL}/top/anime?${queries.toString()}`, {
@@ -34,7 +36,7 @@ export async function fetchSeasonNow({ page = 1, limit }: AnimeQueryParameters) 
   if (limit) queries.append('limit', limit.toString())
 
   try {
-    const response = await fetch(`${process.env.API_URL}/season/now?${queries.toString()}`, {
+    const response = await fetch(`${process.env.API_URL}/seasons/now?${queries.toString()}`, {
       cache: 'force-cache',
       next: { revalidate: 43200 }
     })
