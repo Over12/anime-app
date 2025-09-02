@@ -4,11 +4,13 @@ import { motion, useMotionValue, useSpring } from 'motion/react'
 import { Anime } from '@/types/Anime'
 import { Genre } from '@/types/Genre'
 import { IconHash, IconStar } from '@tabler/icons-react'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
+import SkeletonHeroCard from '../Skeleton/SkeletonHeroCard'
 
 export default function AnimeHeroCard({ anime, index }: { anime: Anime, index: number }) {
+  const [isLoading, setIsLoading] = useState(true)
   const cardRef = useRef<HTMLDivElement>(null)
 
   const x = useMotionValue(0)
@@ -33,9 +35,10 @@ export default function AnimeHeroCard({ anime, index }: { anime: Anime, index: n
   }
 
   return (
-    <Link href={`/anime/${anime.mal_id}`} className={`perspective-midrange ${index >= 3 ? 'translate-x-14' : ''}`}>
-      <motion.div ref={cardRef} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: index * 0.1 }} style={{ rotateX, rotateY }} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className="border border-primary/50 bg-gradient-to-r from-primary/15 to-secondary/15 rounded-md h-52 w-[325px] flex gap-2 p-2 overflow-hidden">
-        <img src={anime.images.webp.image_url} alt={'Image of ' + anime.title} loading='lazy' className='rounded-md aspect-[2/3] object-cover' />
+    <Link href={`/anime/${anime.mal_id}`} className={`relative perspective-midrange ${index >= 3 ? 'translate-x-14' : ''}`}>
+      {isLoading && <SkeletonHeroCard />}
+      <motion.div ref={cardRef} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: index * 0.1 }} style={{ rotateX, rotateY }} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className={`border border-primary/50 bg-gradient-to-r from-primary/15 to-secondary/15 rounded-md h-52 w-[325px] flex gap-2 p-2 overflow-hidden ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+        <img ref={(img) => { if (img && img.complete) setIsLoading(false) }} src={anime.images.webp.image_url} alt={'Image of ' + anime.title} loading='lazy' onLoad={() => setIsLoading(false)} className='rounded-md aspect-[2/3] object-cover' />
         <div className='flex flex-col gap-2'>
           <p className={clsx(
             'w-fit border text-xs px-2 py-1 rounded-md',
