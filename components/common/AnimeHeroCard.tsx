@@ -47,9 +47,9 @@ export default function AnimeHeroCard({ anime, index }: { anime: Anime, index: n
           <p className='text-sm my-1 font-semibold line-clamp-2'>{anime.title}</p>
           {anime.score && anime.rank && (
             <div className='flex gap-5'>
-              <div className='text-yellow-500'>
+              <div>
                 <span className='flex items-center gap-px'>
-                  <IconStar className='size-4' />
+                  <IconStar className='size-4 text-yellow-500' />
                   {anime.score}
                 </span>
                 <p className='text-xs text-text/50'>{anime.scored_by} users</p>
