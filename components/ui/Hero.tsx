@@ -1,6 +1,6 @@
 import { fetchTopAnime } from '@/lib/api'
-import HeroCards from '../common/HeroCards'
-import HeroTitle from '../common/HeroTitle'
+import HeroCards from '../common/Hero/HeroCards'
+import HeroTitle from '../common/Hero/HeroTitle'
 
 export default async function Hero() {
   const animeUpcoming = await fetchTopAnime({ page: 1, limit: 6, filter: 'airing' })
