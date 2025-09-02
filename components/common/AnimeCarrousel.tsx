@@ -6,7 +6,7 @@ import AnimeCard from './AnimeCard'
 import { motion, AnimatePresence } from 'motion/react'
 import useHorizontalScroll from '@/hooks/useHorizontalScroll'
 
-export default function AnimeCarrousel({ animes }: { animes: Anime[] }) {
+export default function AnimeCarrousel({ data }: { data: Anime[] }) {
   const { carrouselRef, atStart, atEnd, scrollLeft, scrollRight } = useHorizontalScroll()
 
   return (
@@ -23,7 +23,7 @@ export default function AnimeCarrousel({ animes }: { animes: Anime[] }) {
           </motion.button>}
       </AnimatePresence>
       <div ref={carrouselRef} className='flex gap-3 sm:gap-5 overflow-x-auto snap-x snap-mandatory'>
-        {animes.map((anime) => (
+        {data.map((anime) => (
           <AnimeCard key={anime.mal_id} anime={anime} />
         ))}
       </div>
