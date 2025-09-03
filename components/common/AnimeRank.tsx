@@ -1,17 +1,29 @@
+'use client'
+
 import { Anime } from '@/types/Anime'
 import clsx from 'clsx'
 import Link from 'next/link'
+import { useState } from 'react'
+import SkeletonAnimeRank from './Skeleton/SkeletonAnimeRank'
+import { motion, AnimatePresence } from 'motion/react'
 
 export default function AnimeRank({ anime }: { anime: Anime }) {
+  const [isLoading, setIsLoading] = useState(true)
+
   return (
     <div key={anime.mal_id} className='flex'>
-      <img src={anime.images.webp.large_image_url} alt={`Portada de ${anime.title}`} loading='lazy' className={clsx(
-        'rounded-md aspect-[2/3] w-36 sm:w-56 shadow-md sm:shadow-xl h-auto',
+      <div className={clsx(
+        'relative rounded-md w-1/2 h-auto sm:w-64 sm:h-[322px] shadow-md sm:shadow-xl',
         anime.rank === 1 && 'border-2 border-yellow-500 shadow-amber-500/50',
         anime.rank === 2 && 'border-2 border-gray-400 shadow-gray-400/50',
         anime.rank === 3 && 'border-2 border-amber-800 shadow-amber-800/50',
-      )} />
-      <div className='relative w-full px-3'>
+      )}>
+        <AnimatePresence>
+          {isLoading && <SkeletonAnimeRank />}
+        </AnimatePresence>
+        <motion.img initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} ref={(img) => { if (img && img.complete) setIsLoading(false) }} src={anime.images.webp.large_image_url} alt={`Portada de ${anime.title}`} loading='lazy' onLoad={() => setIsLoading(false)} className={`rounded-md aspect-[2/3] transition-opacity ${isLoading ? 'opacity-0' : 'opacity-100'}`} />
+      </div>
+      <div className='relative w-1/2 sm:w-full px-3'>
         <div className={clsx(
           'flex flex-col sm:flex-row gap-1',
           anime.rank === 1 && 'text-yellow-500',
