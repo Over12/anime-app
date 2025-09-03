@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useMotionValue, useSpring } from 'motion/react'
+import { AnimatePresence, motion, useMotionValue, useSpring } from 'motion/react'
 import { Anime } from '@/types/Anime'
 import { Genre } from '@/types/Genre'
 import { IconHash, IconStar } from '@tabler/icons-react'
@@ -36,7 +36,9 @@ export default function AnimeHeroCard({ anime, index }: { anime: Anime, index: n
 
   return (
     <Link href={`/anime/${anime.mal_id}`} className={`relative perspective-midrange ${index >= 3 ? 'translate-x-14' : ''}`}>
-      {isLoading && <SkeletonHeroCard />}
+      <AnimatePresence>
+        {isLoading && <SkeletonHeroCard />}
+      </AnimatePresence>
       <motion.div ref={cardRef} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: index * 0.1 }} style={{ rotateX, rotateY }} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className={`border border-primary/50 bg-gradient-to-r from-primary/15 to-secondary/15 rounded-md h-52 w-[325px] flex gap-2 p-2 overflow-hidden ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
         <img ref={(img) => { if (img && img.complete) setIsLoading(false) }} src={anime.images.webp.image_url} alt={'Image of ' + anime.title} loading='lazy' onLoad={() => setIsLoading(false)} className='rounded-md aspect-[2/3] object-cover' />
         <div className='flex flex-col gap-2'>
