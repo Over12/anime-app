@@ -77,3 +77,32 @@ export async function fetchSeasonUpcoming({ page = 1, limit }: AnimeQueryParamet
     throw new Error('Network error: ' + (error as Error).message)
   }
 }
+
+export async function fetchAnimes({ page = 1, q, type, rating, sfw }: AnimeQueryParameters) {
+  const queries = new URLSearchParams({
+    page: page.toString()
+  })
+
+  if (q) queries.append('q', q)
+  if (type) queries.append('type', type)
+  if (rating) queries.append('rating', rating)
+  if (sfw) queries.append('sfw', sfw.toString())
+
+  const isSearch = q || type || rating || sfw
+
+  try {
+    const response = await fetch(`${process.env.API_URL}/anime?${queries.toString()}`, {
+      cache: isSearch ? 'no-store' : 'force-cache',
+      ...(isSearch ? {} : { next: { revalidate: 86400 } })
+    })
+    const data: ApiResponse<Anime> | ErrorResponse = await response.json()
+
+    if ('error' in data) {
+      throw new Error('Response error: ' + data.message)
+    }
+
+    return data
+  } catch (error) {
+    throw new Error('Network error: ' + (error as Error).message)
+  }
+}
