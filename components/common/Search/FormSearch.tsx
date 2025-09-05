@@ -66,7 +66,7 @@ export default function FormSearch() {
       </div>
       <div className='flex items-center gap-2'>
         <label htmlFor='sfw'>Safe for Work:</label>
-        <input type='checkbox' name='sfw' id='sfw' defaultChecked className='accent-primary size-4 focus:outline-none cursor-pointer' />
+        <input type='checkbox' name='sfw' id='sfw' className='accent-primary size-4 focus:outline-none cursor-pointer' />
       </div>
       <button type='submit' className='flex items-center gap-1 px-3 py-2 text-white bg-primary rounded-md cursor-pointer hover:bg-accent transition-colors'>
         <IconSearch className='size-5' />
