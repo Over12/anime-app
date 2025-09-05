@@ -37,10 +37,12 @@ export async function fetchSeasonNow({ page = 1, limit, sfw, filter }: AnimeQuer
   if (sfw) queries.append('sfw', sfw.toString())
   if (filter) queries.append('filter', filter.toString())
 
+  const isSearch = filter || sfw !== undefined
+
   try {
     const response = await fetch(`${process.env.API_URL}/seasons/now?${queries.toString()}`, {
-      cache: 'force-cache',
-      next: { revalidate: 86400 }
+      cache: isSearch ? 'no-store' : 'force-cache',
+      ...(isSearch ? {} : { next: { revalidate: 86400 } })
     })
 
     const data: ApiResponse<Anime> | ErrorResponse = await response.json()
@@ -63,11 +65,13 @@ export async function fetchSeasonUpcoming({ page = 1, limit, sfw, filter }: Anim
   if (limit) queries.append('limit', limit.toString())
   if (sfw) queries.append('sfw', sfw.toString())
   if (filter) queries.append('filter', filter.toString())
+  
+  const isSearch = filter || sfw !== undefined
 
   try {
     const response = await fetch(`${process.env.API_URL}/seasons/upcoming?${queries.toString()}`, {
-      cache: 'force-cache',
-      next: { revalidate: 86400 }
+      cache: isSearch ? 'no-store' : 'force-cache',
+      ...(isSearch ? {} : { next: { revalidate: 86400 } })
     })
 
     const data: ApiResponse<Anime> | ErrorResponse = await response.json()
