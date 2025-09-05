@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className='text-text bg-background transition-colors' suppressHydrationWarning>
+    <html lang="en" className='text-text bg-background transition-colors' suppressHydrationWarning data-scroll-behavior="smooth">
       <body className={onest.className}>
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
           <NavBar />
