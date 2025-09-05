@@ -28,17 +28,19 @@ export async function fetchTopAnime({ page = 1, limit = 5, filter }: AnimeQueryP
   }
 }
 
-export async function fetchSeasonNow({ page = 1, limit }: AnimeQueryParameters) {
+export async function fetchSeasonNow({ page = 1, limit, sfw, filter }: AnimeQueryParameters) {
   const queries = new URLSearchParams({
     page: page.toString()
   })
 
   if (limit) queries.append('limit', limit.toString())
+  if (sfw) queries.append('sfw', sfw.toString())
+  if (filter) queries.append('filter', filter.toString())
 
   try {
     const response = await fetch(`${process.env.API_URL}/seasons/now?${queries.toString()}`, {
       cache: 'force-cache',
-      next: { revalidate: 43200 }
+      next: { revalidate: 86400 }
     })
 
     const data: ApiResponse<Anime> | ErrorResponse = await response.json()
@@ -53,12 +55,14 @@ export async function fetchSeasonNow({ page = 1, limit }: AnimeQueryParameters) 
   }
 }
 
-export async function fetchSeasonUpcoming({ page = 1, limit }: AnimeQueryParameters) {
+export async function fetchSeasonUpcoming({ page = 1, limit, sfw, filter }: AnimeQueryParameters) {
   const queries = new URLSearchParams({
     page: page.toString()
   })
 
   if (limit) queries.append('limit', limit.toString())
+  if (sfw) queries.append('sfw', sfw.toString())
+  if (filter) queries.append('filter', filter.toString())
 
   try {
     const response = await fetch(`${process.env.API_URL}/seasons/upcoming?${queries.toString()}`, {
