@@ -14,7 +14,6 @@ export default function Pagination({ paginationData }: { paginationData?: Pagina
   const isSinglePage = paginationData ? paginationData.last_visible_page === 1 : true
   const isFirstPage = currentPage === 1
   const isLastPage = paginationData ? !paginationData.has_next_page : true
-  if (isSinglePage) return null
 
   useEffect(() => {
     setCurrentPage(paginationData?.current_page || 1)
@@ -79,6 +78,8 @@ export default function Pagination({ paginationData }: { paginationData?: Pagina
       router.push(`${pathname}?${params.toString()}`)
     }
   }
+
+  if (isSinglePage) return null
 
   return (
     <div className='flex justify-center items-center gap-4 py-10'>
