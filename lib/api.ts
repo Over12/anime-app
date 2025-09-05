@@ -88,7 +88,7 @@ export async function fetchAnimes({ page = 1, q, type, rating, sfw }: AnimeQuery
   if (rating) queries.append('rating', rating)
   if (sfw) queries.append('sfw', sfw.toString())
 
-  const isSearch = q || type || rating || sfw
+  const isSearch = q || type || rating || sfw !== undefined
 
   try {
     const response = await fetch(`${process.env.API_URL}/anime?${queries.toString()}`, {
