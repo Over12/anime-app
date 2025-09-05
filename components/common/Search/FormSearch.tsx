@@ -2,6 +2,7 @@
 
 import { IconSearch } from '@tabler/icons-react'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import path from 'path'
 
 export default function FormSearch() {
   const router = useRouter()
@@ -25,21 +26,23 @@ export default function FormSearch() {
     })
 
     const queryString = searchParams.toString()
-    const searchURL = queryString ? `/animes?${queryString}` : '/animes'
+    const searchURL = queryString ? `${pathname}?${queryString}` : pathname
 
-    if (pathname === '/animes' && queryString !== currentSearchParams.toString()) {
+    if (queryString !== currentSearchParams.toString()) {
       router.push(searchURL)
     }
   }
 
   return (
     <form onSubmit={onSubmit} className='mb-5 flex items-center gap-5'>
+      {pathname === '/animes' && (
+        <div>
+          <input type='text' name='q' placeholder='Search for an anime...' className='focus:outline-none focus:border-accent px-2 py-1 border-b border-primary' />
+        </div>
+      )}
       <div>
-        <input type='text' name='q' placeholder='Search for an anime...' className='focus:outline-none focus:border-accent px-2 py-1 border-b border-primary' />
-      </div>
-      <div>
-        <label htmlFor='type'>Type:</label>
-        <select name='type' id='type' className='focus:outline-none focus:border-accent px-2 py-1 bg-background border-b border-primary cursor-pointer ml-2 transition-colors'>
+        <label htmlFor={pathname === '/animes' ? 'type' : 'filter'}>Type:</label>
+        <select name={pathname === '/animes' ? 'type' : 'filter'} id={pathname === '/animes' ? 'type' : 'filter'} className='focus:outline-none focus:border-accent px-2 py-1 bg-background border-b border-primary cursor-pointer ml-2 transition-colors'>
           <option value=''>All</option>
           <option value='tv'>TV</option>
           <option value='movie'>Movie</option>
@@ -47,23 +50,29 @@ export default function FormSearch() {
           <option value='special'>Special</option>
           <option value='ona'>ONA</option>
           <option value='music'>Music</option>
-          <option value='cm'>CM</option>
-          <option value='pv'>PV</option>
-          <option value='tv_special'>TV Special</option>
+          {pathname === '/animes' && (
+            <>
+              <option value='cm'>CM</option>
+              <option value='pv'>PV</option>
+              <option value='tv_special'>TV Special</option>
+            </>
+          )}
         </select>
       </div>
-      <div>
-        <label htmlFor='rating'>Rating:</label>
-        <select name='rating' id='rating' className='focus:outline-none focus:border-accent px-2 py-1 bg-background border-b border-primary cursor-pointer ml-2 transition-colors'>
-          <option value=''>All</option>
-          <option value='g'>G</option>
-          <option value='pg'>PG</option>
-          <option value='pg13'>PG-13</option>
-          <option value='r17'>R-17+</option>
-          <option value='r'>R+</option>
-          <option value='rx'>Rx</option>
-        </select>
-      </div>
+      {pathname === '/animes' && (
+        <div>
+          <label htmlFor='rating'>Rating:</label>
+          <select name='rating' id='rating' className='focus:outline-none focus:border-accent px-2 py-1 bg-background border-b border-primary cursor-pointer ml-2 transition-colors'>
+            <option value=''>All</option>
+            <option value='g'>G</option>
+            <option value='pg'>PG</option>
+            <option value='pg13'>PG-13</option>
+            <option value='r17'>R-17+</option>
+            <option value='r'>R+</option>
+            <option value='rx'>Rx</option>
+          </select>
+        </div>
+      )}
       <div className='flex items-center gap-2'>
         <label htmlFor='sfw'>Safe for Work:</label>
         <input type='checkbox' name='sfw' id='sfw' className='accent-primary size-4 focus:outline-none cursor-pointer' />
