@@ -37,7 +37,7 @@ export async function fetchSeasonNow({ page = 1, limit, sfw, filter }: AnimeQuer
   if (sfw) queries.append('sfw', sfw.toString())
   if (filter) queries.append('filter', filter.toString())
 
-  const isSearch = filter || sfw !== undefined
+  const isSearch = filter || sfw === true
 
   try {
     const response = await fetch(`${process.env.API_URL}/seasons/now?${queries.toString()}`, {
@@ -66,7 +66,7 @@ export async function fetchSeasonUpcoming({ page = 1, limit, sfw, filter }: Anim
   if (sfw) queries.append('sfw', sfw.toString())
   if (filter) queries.append('filter', filter.toString())
   
-  const isSearch = filter || sfw !== undefined
+  const isSearch = filter || sfw === true
 
   try {
     const response = await fetch(`${process.env.API_URL}/seasons/upcoming?${queries.toString()}`, {
@@ -96,7 +96,7 @@ export async function fetchAnimes({ page = 1, q, type, rating, sfw }: AnimeQuery
   if (rating) queries.append('rating', rating)
   if (sfw) queries.append('sfw', sfw.toString())
 
-  const isSearch = q || type || rating || sfw !== undefined
+  const isSearch = q || type || rating || sfw === true
 
   try {
     const response = await fetch(`${process.env.API_URL}/anime?${queries.toString()}`, {
