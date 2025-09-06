@@ -34,9 +34,14 @@ export interface Anime {
   scored_by: number | null,
   rank: number | null,
   popularity: number | null,
+  favorites: number | null,
   synopsis: string,
   background: string,
   season: string | null,
   year: number | null,
   genres: Genre[]
+}
+
+export interface AnimeResponse {
+  data: Anime
 }

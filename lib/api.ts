@@ -1,4 +1,4 @@
-import { Anime } from '@/types/Anime'
+import { Anime, AnimeResponse } from '@/types/Anime'
 import { AnimeQueryParameters } from '@/types/AnimeQueryParameters'
 import { ApiResponse, ErrorResponse } from '@/types/ApiResponse'
 
@@ -104,6 +104,24 @@ export async function fetchAnimes({ page = 1, q, type, rating, sfw }: AnimeQuery
       ...(isSearch ? {} : { next: { revalidate: 86400 } })
     })
     const data: ApiResponse<Anime> | ErrorResponse = await response.json()
+
+    if ('error' in data) {
+      throw new Error('Response error: ' + data.message)
+    }
+
+    return data
+  } catch (error) {
+    throw new Error('Network error: ' + (error as Error).message)
+  }
+}
+
+export async function fetchAnimeById({ mal_id } : { mal_id: number }) {
+  try {
+    const response = await fetch(`${process.env.API_URL}/anime/${mal_id}/full`, {
+      cache: 'force-cache',
+      next: { revalidate: 86400 }
+    })
+    const data: AnimeResponse | ErrorResponse = await response.json()
 
     if ('error' in data) {
       throw new Error('Response error: ' + data.message)

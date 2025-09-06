@@ -1,6 +1,6 @@
 export interface ApiResponse<T> {
-  data: T[],
-  pagination: Pagination
+  data: T | T[],
+  pagination?: Pagination
 }
 
 export interface Pagination {
