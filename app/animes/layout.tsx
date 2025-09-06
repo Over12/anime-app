@@ -1,5 +1,4 @@
 import FormSearch from '@/components/common/Search/FormSearch'
-import Pagination from '@/components/common/Search/Pagination'
 
 export default function layout({ children }: { children: React.ReactNode }) {
   return (
