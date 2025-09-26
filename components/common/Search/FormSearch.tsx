@@ -2,7 +2,6 @@
 
 import { IconSearch } from '@tabler/icons-react'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import path from 'path'
 
 export default function FormSearch() {
   const router = useRouter()
