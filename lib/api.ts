@@ -24,7 +24,7 @@ export async function fetchTopAnime({ page = 1, limit = 5, filter }: AnimeQueryP
 
     return data
   } catch (error) {
-    throw new Error('Network error: ' + (error as Error).message)
+    throw new Error((error as Error).message)
   }
 }
 
@@ -53,7 +53,7 @@ export async function fetchSeasonNow({ page = 1, limit, sfw, filter }: AnimeQuer
 
     return data
   } catch (error) {
-    throw new Error('Network error: ' + (error as Error).message)
+    throw new Error((error as Error).message)
   }
 }
 
@@ -82,7 +82,7 @@ export async function fetchSeasonUpcoming({ page = 1, limit, sfw, filter }: Anim
 
     return data
   } catch (error) {
-    throw new Error('Network error: ' + (error as Error).message)
+    throw new Error((error as Error).message)
   }
 }
 
@@ -111,7 +111,7 @@ export async function fetchAnimes({ page = 1, q, type, rating, sfw }: AnimeQuery
 
     return data
   } catch (error) {
-    throw new Error('Network error: ' + (error as Error).message)
+    throw new Error((error as Error).message)
   }
 }
 
@@ -129,6 +129,6 @@ export async function fetchAnimeById({ mal_id } : { mal_id: number }) {
 
     return data
   } catch (error) {
-    throw new Error('Network error: ' + (error as Error).message)
+    throw new Error((error as Error).message)
   }
 }
