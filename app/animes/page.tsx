@@ -4,6 +4,7 @@ import { fetchAnimes } from '@/lib/api'
 import { deleteDuplicate } from '@/lib/utils'
 import { Anime } from '@/types/Anime'
 import { AnimeQueryParameters } from '@/types/AnimeQueryParameters'
+import { Suspense } from 'react'
 
 export default async function page({ searchParams }: { searchParams: Promise<AnimeQueryParameters> }) {
   const params = await searchParams
@@ -17,7 +18,9 @@ export default async function page({ searchParams }: { searchParams: Promise<Ani
           <AnimeCard key={anime.mal_id} anime={anime} />
         ))}
       </div>
-      <Pagination paginationData={animes.pagination} />
+      <Suspense>
+        <Pagination paginationData={animes.pagination} />
+      </Suspense>
     </>
   )
 }
