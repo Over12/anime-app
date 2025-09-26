@@ -1,6 +1,5 @@
 import Pill from '@/components/common/Pill'
 import { fetchAnimeById } from '@/lib/api'
-import { IconStar, IconStarFilled } from '@tabler/icons-react'
 
 export default async function page({ params }: { params: Promise<{ mal_id: number }> }) {
   const { mal_id } = await params
@@ -33,10 +32,10 @@ export default async function page({ params }: { params: Promise<{ mal_id: numbe
           <h3 className='text-2xl font-bold mt-2'>Details</h3>
           <div className='flex gap-2'>
             <Pill className='bg-primary/70 border-primary'>Type: {data.type}</Pill>
-            <Pill className='bg-primary/70 border-primary'>Episodes: {data.episodes}</Pill>
+            {data.episodes && <Pill className='bg-primary/70 border-primary'>Episodes: {data.episodes}</Pill>}
             <Pill className='bg-primary/70 border-primary'>Status: {data.status}</Pill>
             <Pill className='bg-primary/70 border-primary'>Duration: {data.duration}</Pill>
-            <Pill className='bg-primary/70 border-primary'>Rating: {data.rating}</Pill>
+            {data.rating && <Pill className='bg-primary/70 border-primary'>Rating: {data.rating}</Pill>}
           </div>
           {data.trailer && data.trailer.embed_url && (
             <>

@@ -8,7 +8,7 @@ export default async function TopAnimes() {
     <section className='spacing-section'>
       <h2 className='title-section'>The Best 5 Of The Ranking</h2>
       <div className='flex flex-col gap-7'>
-        {top.data.map((anime) => (
+        {Array.isArray(top.data) && top.data.map((anime) => (
           <AnimeRank key={anime.mal_id} anime={anime} />
         ))}
       </div>

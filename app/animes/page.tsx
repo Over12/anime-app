@@ -2,12 +2,13 @@ import AnimeCard from '@/components/common/AnimeCard'
 import Pagination from '@/components/common/Search/Pagination'
 import { fetchAnimes } from '@/lib/api'
 import { deleteDuplicate } from '@/lib/utils'
+import { Anime } from '@/types/Anime'
 import { AnimeQueryParameters } from '@/types/AnimeQueryParameters'
 
 export default async function page({ searchParams }: { searchParams: Promise<AnimeQueryParameters> }) {
   const params = await searchParams
   const animes = await fetchAnimes(params)
-  const uniqueAnimes = deleteDuplicate(animes.data)
+  const uniqueAnimes = deleteDuplicate(animes.data as Anime[])
 
   return (
     <>
