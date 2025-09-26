@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function NotFound() {
   return (
     <main className="flex flex-col h-svh justify-center items-center text-center px-4">
@@ -8,9 +10,9 @@ export default function NotFound() {
       <p className="mt-1 text-xs sm:text-sm italic">
         (Is this canon... or just filler?)
       </p>
-      <a href="/" className="mt-6 px-4 py-2 bg-primary text-white rounded-lg shadow-md hover:bg-primary/80 transition">
+      <Link href="/" className="mt-6 px-4 py-2 bg-primary text-white rounded-lg shadow-md hover:bg-primary/80 transition">
         Take me back
-      </a>
+      </Link>
     </main>
   )
 }
