@@ -8,6 +8,9 @@ import ThemeProvider from '@/components/ThemeProvider'
 export const metadata: Metadata = {
   title: "Kami Hub",
   description: "Discover and Explore Your Favorite Anime",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
