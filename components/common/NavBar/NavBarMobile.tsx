@@ -1,10 +1,11 @@
 'use client'
 
-import { IconMenuDeep } from '@tabler/icons-react'
+import { IconBubbleTea, IconMenuDeep } from '@tabler/icons-react'
 import Divisor from '../Divisor'
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import NavigationLinks from './NavigationLinks'
+import Link from 'next/link'
 
 export default function NavBarMobile() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -16,7 +17,7 @@ export default function NavBarMobile() {
   return (
     <>
       <nav className='flex items-center justify-between sm:hidden fixed bg-background/80 backdrop-blur-xl inset-x-0 spacing-x py-5 z-50'>
-        <span className='text-2xl font-bold'>Anime App</span>
+        <Link href='/' className='text-2xl font-bold'><IconBubbleTea className='inline-block size-8' /> Kami Hub</Link>
         <button className='focus:outline-none' onClick={toggleMenu}>
           <IconMenuDeep className='size-8' />
         </button>
