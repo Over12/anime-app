@@ -6,8 +6,8 @@ import Footer from '@/components/ui/Footer'
 import ThemeProvider from '@/components/ThemeProvider'
 
 export const metadata: Metadata = {
-  title: "Anime App",
-  description: "A simple anime app",
+  title: "Kami Hub",
+  description: "Discover and Explore Your Favorite Anime",
 };
 
 export default function RootLayout({
